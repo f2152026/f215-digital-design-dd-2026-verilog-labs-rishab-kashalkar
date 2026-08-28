@@ -60,10 +60,11 @@ module cla64_flat(
   // both checks.
   //
   // TODO: paste your verified assign statements for c[1] through c[64] here.
+  assign c[1] = g[0] | (p[0] & cin);
   genvar j;
     generate
         for (j = 2; j <= 64; j = j + 1) begin : gen_carries
-            assign #(2) c[j] = g[j-1] | (p[j-1] & c[j-1]);
+            assign c[j] = g[j-1] | (p[j-1] & c[j-1]);
         end
     endgenerate
   assign cout = c[64];
